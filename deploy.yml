@@ -1,0 +1,16 @@
+---
+- name: createing artifacts and copy them to webserver
+  hosts: all
+  tasks:
+    - name: installing the httpd server
+      yum:
+        name: httpd
+        state: latest
+    - name: starting the httpd server
+      service:
+        name: httpd
+        state: started
+    - name: copying the files
+      copy:
+        src: /opt/
+        dest: /var/www/html
